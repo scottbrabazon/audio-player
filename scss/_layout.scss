@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+body {
+	background-color: #e8e8e8;
+}
+
+// .wrapper {
+// 	max-width: 900px;
+// 	margin: 0 auto;
+// }
+
+.now-playing {
+	max-width: 230px;
+	border: 7px solid #fff;
+	margin-top: 50px;
+}
+
+.button-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 50px 0 0 122px;
+}
+
+.connecting-lines {
+	width: 100%;
+	position: absolute;
+	z-index: -10;
+	pointer-events: none;
+}
+
+.connecting-lines svg {
+	height: 100%;
+}
+
+@keyframes offset {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+.cls-1 {
+	fill: transparent;
+	stroke: #9bbcc9;
+	stroke-miterlimit:10;
+	stroke-width: 3;
+	animation: offset 1s linear normal;
+	animation-fill-mode: forwards;
+}
+
+
+button {
+	min-width: 244px;
+	background-color: #cbcbcb;
+	color: #fff;
+	text-align: left;
+	border-radius: 25px;
+	border-width: 0;
+	padding: 0;
+	margin: 0  10px 20px 10px;
+}
+
+.selected {
+	background-color: #9bbcc9;
+}
+
+button:focus {outline:0;}
+
+button span {
+	font-size: 14px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+button img {
+	width: 22px;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+
+
