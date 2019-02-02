@@ -1,25 +1,28 @@
+let browserWidth = $(window).width();
 let totalWidth = $(".connecting-lines").width();
+let totalHeight = $("#buttonContainer").height();
+let wrapperMargin = $(window).width() / 10;
 let selected = '';
 let buttonPosition = 0;
 let buttonAnchorLeft = 0;
 let buttonAnchorTop = 0;
-let svgAnchorTop = 276;
+let svgAnchorTop = $(".now-playing").height() + 57;
 let svgHeight =  0;
 let svgLine = '';
+const playButton = '<img class="play-icon" src="/img/button-play.png" alt="Play">';
+const pauseButton = '<img class="play-icon" src="/img/button-pause.png" alt="Pause">';
 
-// DRAW LINE ON CLICK
 
-$("button").click(function(){
 
-	// Reset and select button
-	$(".connecting-lines").empty();
-	$("button").removeClass("selected");
-	$(this).addClass("selected");
-	selected = $('.selected');
+
+function drawLineDesktop() {
+
+	$( ".connecting-lines" ).removeAttr("style");
 
 	// Get co-ordinates
+	selected = $('.selected');
 	buttonPosition = selected.position();
-	buttonAnchorLeft = buttonPosition.left + 132;
+	buttonAnchorLeft = (buttonPosition.left + 85) - wrapperMargin;
 	buttonAnchorTop = buttonPosition.top;
 
 	// Calculate svg height
@@ -32,12 +35,69 @@ $("button").click(function(){
 
 	$( ".connecting-lines" ).append(svgLine);
 
+};
+
+function drawLineMobile() {
+
+	// Get co-ordinates
+	selected = $('.selected');
+	buttonPosition = selected.position();
+	buttonAnchorLeft = buttonPosition.left;
+	buttonAnchorTop = buttonPosition.top;
+
+	// Calculate svg height
+	svgHeight =  buttonAnchorTop - svgAnchorTop + 14;
+
+	// Insert svg
+	svgLine = 	'<svg viewBox="0 0 ' + buttonAnchorLeft + ' ' + svgHeight + '">' +
+					'<polyline class="cls-1" points="' + buttonAnchorLeft + ' ' + svgHeight + ' 0.5 ' + svgHeight + ' 0.5 0"/>' +
+				'</svg>';
+
+	let buttonAnchorLeftPixels = buttonAnchorLeft + "px";
+	$( ".connecting-lines" ).css({"width": buttonAnchorLeftPixels, "height": totalHeight});
+	$( ".connecting-lines" ).append(svgLine);
+
+};
+
+
+
+
+
+
+// DRAW LINE ON CLICK
+
+$("button").click(function(){
+
+	// Reset and select button
+	$("button").children("img").replaceWith(playButton);
+	$(".connecting-lines").empty();
+	$("button").removeClass("selected");
+	$(this).addClass("selected");
+
+	// Replace play icon
+	$(this).children("img").remove();
+	$(this).prepend(pauseButton);
+
+	// Decide which line to draw
+	browserWidth = $(window).width();
+
+	if (browserWidth < 512) {
+		drawLineMobile();
+	} else {
+		drawLineDesktop();
+	}
+
 	// Calculate svg path length
 	let path = document.querySelector('.cls-1');
 	let length = path.getTotalLength();
 
 	// Add inline css for animation
-	$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": - length});
+
+	if (browserWidth < 512) {
+		$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": - length});
+	} else {
+		$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": length});
+	}
 
 });
 
@@ -46,23 +106,18 @@ $("button").click(function(){
 $(window).resize(function(){
 
 	totalWidth = $(".connecting-lines").width();
+	wrapperMargin = $(window).width() / 10;
 
-	// Reset and select button
+	// Reset
 	$(".connecting-lines").empty();
 
-	// Get co-ordinates
-	buttonPosition = selected.position();
-	buttonAnchorLeft = buttonPosition.left + 132;
-	buttonAnchorTop = buttonPosition.top;
+	// Decide which line to draw
+	browserWidth = $(window).width();
 
-	// Calculate svg height
-	svgHeight =  buttonAnchorTop - svgAnchorTop;
-
-	// Insert svg
-	svgLine = 	'<svg viewBox="0 0 ' + totalWidth + ' ' + svgHeight + '">' +
-					'<polyline class="cls-1" points="122 0 122 25 ' + buttonAnchorLeft + ' 25 ' + buttonAnchorLeft  + ' ' + svgHeight + '"/>' +
-				'</svg>';
-
-	$( ".connecting-lines" ).append(svgLine);
+	if (browserWidth < 512) {
+		drawLineMobile();
+	} else {
+		drawLineDesktop();
+	}
 
 });
