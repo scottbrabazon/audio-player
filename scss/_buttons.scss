@@ -1,0 +1,33 @@
+button {
+	min-width: 150px;
+	background-color: #cbcbcb;
+	color: #fff;
+	text-align: left;
+	border-radius: 25px;
+	border-width: 0;
+	padding: 0;
+	margin: 0  10px 20px 10px;
+}
+
+button:focus {outline:0;}
+
+button:hover {
+	background-color: #c0c0c0;
+}
+
+button span {
+	font-size: 14px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+button img {
+	width: 22px;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.selected {
+	animation: selected 0.5s linear normal;
+	animation-fill-mode: forwards;
+	animation-delay: 0.5s;
+}

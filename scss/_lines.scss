@@ -1,0 +1,17 @@
+.cls-1 {
+	fill: transparent;
+	stroke: #9bbcc9;
+	stroke-miterlimit:10;
+	stroke-width: 3;
+	animation: offset 0.5s linear normal;
+	animation-fill-mode: forwards;
+}
+
+.connecting-lines {
+	margin-top: -3px;
+	width: 80%;
+	left: 10%;
+	position: absolute;
+	z-index: -10;
+	pointer-events: none;
+}

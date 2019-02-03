@@ -464,14 +464,6 @@ body {
   justify-content: center;
   margin: 50px 0 0 70px; }
 
-.connecting-lines {
-  margin-top: -3px;
-  width: 80%;
-  left: 10%;
-  position: absolute;
-  z-index: -10;
-  pointer-events: none; }
-
 .connecting-lines svg {
   height: 100%; }
 
@@ -489,18 +481,6 @@ body {
     background-color: #9bbcc9;
     transform: scale3d(1, 1, 1); } }
 
-.pulse {
-  -webkit-animation-name: pulse;
-  animation-name: pulse; }
-
-.cls-1 {
-  fill: transparent;
-  stroke: #9bbcc9;
-  stroke-miterlimit: 10;
-  stroke-width: 3;
-  animation: offset 0.5s linear normal;
-  animation-fill-mode: forwards; }
-
 button {
   min-width: 150px;
   background-color: #cbcbcb;
@@ -510,11 +490,6 @@ button {
   border-width: 0;
   padding: 0;
   margin: 0  10px 20px 10px; }
-
-.selected {
-  animation: selected 0.5s linear normal;
-  animation-fill-mode: forwards;
-  animation-delay: 0.5s; }
 
 button:focus {
   outline: 0; }
@@ -530,6 +505,27 @@ button img {
   width: 22px;
   padding: 10px;
   vertical-align: middle; }
+
+.selected {
+  animation: selected 0.5s linear normal;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s; }
+
+.cls-1 {
+  fill: transparent;
+  stroke: #9bbcc9;
+  stroke-miterlimit: 10;
+  stroke-width: 3;
+  animation: offset 0.5s linear normal;
+  animation-fill-mode: forwards; }
+
+.connecting-lines {
+  margin-top: -3px;
+  width: 80%;
+  left: 10%;
+  position: absolute;
+  z-index: -10;
+  pointer-events: none; }
 
 @media screen and (max-width: 512px) {
   .button-container {

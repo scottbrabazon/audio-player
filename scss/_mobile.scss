@@ -1,0 +1,29 @@
+@media screen and (max-width: 512px) {
+
+	.button-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 50px 0 0 70px;
+	}
+
+	.connecting-lines {
+		margin-left: 10%;
+		width: 60px;
+		left: 70px;
+	}
+
+	.connecting-lines svg {
+		height: auto;
+	}
+
+	.wrapper {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.cls-1 {
+		stroke-width: 6;
+	}
+
+}
