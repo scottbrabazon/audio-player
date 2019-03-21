@@ -52,36 +52,52 @@ function drawLineMobile() {
 
 $("button").click(function(){
 
-	// Reset and select button
-	$("button").children("img").replaceWith(playButton);
-	$(".connecting-lines").empty();
-	$("button").removeClass("selected");
-	$(this).addClass("selected");
+	if ($(this).hasClass("selected")) {
 
-	// Replace play icon
-	$(this).children("img").remove();
-	$(this).prepend(pauseButton);
+		$("button").removeClass("selected");
 
-	// Decide which line to draw
-	browserWidth = $(window).width();
+		// Replace pause icon
+		$(this).children("img").remove();
+		$(this).prepend(playButton);
 
-	if (browserWidth < 512) {
-		drawLineMobile();
+		// Pause equalizer
+		$(".play").css("visibility", "hidden");
+
 	} else {
-		drawLineDesktop();
+
+		// Play equalizer
+		$(".play").css("visibility", "visible");
+
+		// Reset and select button
+		$("button").children("img").replaceWith(playButton);
+		$(".connecting-lines").empty();
+		$("button").removeClass("selected");
+		$(this).addClass("selected");
+
+		// Replace play icon
+		$(this).children("img").remove();
+		$(this).prepend(pauseButton);
+
+		// Decide which line to draw
+		browserWidth = $(window).width();
+
+		if (browserWidth < 512) {
+			drawLineMobile();
+		} else {
+			drawLineDesktop();
+		}
+
+		// Calculate svg path length
+		let path = document.querySelector(".cls-1");
+		let length = path.getTotalLength();
+
+		// Add inline css for animation
+		if (browserWidth < 512) {
+			$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": - length});
+		} else {
+			$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": length});
+		}
 	}
-
-	// Calculate svg path length
-	let path = document.querySelector(".cls-1");
-	let length = path.getTotalLength();
-
-	// Add inline css for animation
-	if (browserWidth < 512) {
-		$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": - length});
-	} else {
-		$(".cls-1").css({"stroke-dasharray": length, "stroke-dashoffset": length});
-	}
-
 });
 
 // REFRESH LINE ON RESIZE

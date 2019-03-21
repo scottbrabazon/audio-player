@@ -5,6 +5,8 @@
 	stroke-width: 3;
 	animation: offset 0.5s linear normal;
 	animation-fill-mode: forwards;
+	-webkit-animation: offset 0.5s linear normal;
+	-webkit-animation-fill-mode: forwards;
 }
 
 .connecting-lines {

@@ -454,9 +454,11 @@ body {
   margin: 0 auto; }
 
 .now-playing {
-  max-width: 230px;
+  width: 230px;
+  height: 230px;
   border: 7px solid #fff;
-  margin-top: 50px; }
+  margin-top: 50px;
+  background-color: #363a3b; }
 
 .button-container {
   display: flex;
@@ -467,9 +469,23 @@ body {
 .connecting-lines svg {
   height: 100%; }
 
+@-webkit-keyframes offset {
+  0% {
+    -webkit-stroke-dashoffset: 0; } }
+
 @keyframes offset {
   100% {
     stroke-dashoffset: 0; } }
+
+@-webkit-keyframes selected {
+  0% {
+    -webkit-background-color: #cbcbcb;
+    -webkit-transform: scale3d(1, 1, 1); }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05); }
+  100% {
+    -webkit-background-color: #9bbcc9;
+    -webkit-transform: scale3d(1, 1, 1); } }
 
 @keyframes selected {
   0% {
@@ -480,6 +496,52 @@ body {
   100% {
     background-color: #9bbcc9;
     transform: scale3d(1, 1, 1); } }
+
+.play {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden; }
+
+path {
+  fill: #363a3b; }
+
+.select__1 path:nth-child(-n+1) {
+  fill: #00aec9; }
+
+.select__2 path:nth-child(-n+2) {
+  fill: #00aec9; }
+
+.select__3 path:nth-child(-n+3) {
+  fill: #00aec9; }
+
+.select__4 path:nth-child(-n+4) {
+  fill: #00aec9; }
+
+.select__5 path:nth-child(-n+5) {
+  fill: #00aec9; }
+
+.select__6 path:nth-child(-n+6) {
+  fill: #00aec9; }
+
+.select__7 path:nth-child(-n+7) {
+  fill: #00aec9; }
+
+.select__8 path:nth-child(-n+8) {
+  fill: #00aec9; }
+
+.select__9 path:nth-child(-n+9) {
+  fill: #00aec9; }
+
+.select__10 path:nth-child(-n+10) {
+  fill: #00aec9; }
+
+.select__11 path:nth-child(-n+11) {
+  fill: #00aec9; }
+
+.select__12 path:nth-child(-n+12) {
+  fill: #00aec9; }
 
 button {
   min-width: 150px;
@@ -517,7 +579,9 @@ button img {
   stroke-miterlimit: 10;
   stroke-width: 3;
   animation: offset 0.5s linear normal;
-  animation-fill-mode: forwards; }
+  animation-fill-mode: forwards;
+  -webkit-animation: offset 0.5s linear normal;
+  -webkit-animation-fill-mode: forwards; }
 
 .connecting-lines {
   margin-top: -3px;
